@@ -29,6 +29,21 @@ namespace Attempt1.Test
             Assert.Equal(expectedScore, result);
         }
 
+        [Theory]
+        [InlineData(new int[] { 1, 1, 1, 5, 1 }, 1150)]
+        [InlineData(new int[] { 2, 3, 4, 6, 2 }, 0)]
+        [InlineData(new int[] { 3, 4, 5, 3, 3 }, 350)]
+        public void ShouldReturnSumOfCombi(
+            int[] dices, int expectedScore)
+        {
+            var result = Greed.GetScore(dices);
+
+            Assert.Equal(expectedScore, result);
+
+        }
+
+        
+
 
     }
 }
