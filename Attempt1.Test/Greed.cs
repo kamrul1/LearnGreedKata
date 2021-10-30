@@ -12,12 +12,13 @@ namespace Attempt1.Test
         private const int ONE_APPEARANCE = 1;
         private const int TRIPLE_SCORE_MULTIPLER = 100;
 
+
         internal static int GetScore(int[] dices)
         {
             int score = 0;
 
-            score = ScoreDices1s(dices, score);
-            score = ScoreDices5s(dices, score);
+            score = ScoreOnesOrFives(dices, score,1);
+            score = ScoreOnesOrFives(dices, score,5);
 
             score = ScoreTripleDiceRolls(dices, score, 2);
             score = ScoreTripleDiceRolls(dices, score, 3);
@@ -38,38 +39,24 @@ namespace Attempt1.Test
             return score;
         }
 
-        private static int ScoreDices1s(int[] dices, int score)
+
+        private static int ScoreOnesOrFives(int[] dices, int score, int diceRoll)
         {
-            int no1s = CountNoTime(dices, 1);
-            if (no1s == ONE_APPEARANCE)
+            var noDiceRolls = CountNoTime(dices, diceRoll);
+
+            var diceRollSingleScoreMultiplier = diceRoll == 1 ? 100 : 50;
+            var diceRollMultiplier = diceRoll == 1 ? 10 : 5;
+
+
+            if (noDiceRolls == ONE_APPEARANCE)
             {
-                score += 100;
+                score += diceRollSingleScoreMultiplier;
             }
-            if (no1s >= TRIPLE_APPEARANCE)
+
+            if (noDiceRolls >= TRIPLE_APPEARANCE)
             {
-                score = 1000;
-                score += (no1s - 3) * 100;
-
-            }
-
-            return score;
-        }
-
-
-
-
-        private static int ScoreDices5s(int[] dices, int score)
-        {
-            var no5s = CountNoTime(dices, 5);
-            if (no5s == ONE_APPEARANCE)
-            {
-                score += 50;
-
-            }
-            if (no5s >= TRIPLE_APPEARANCE)
-            {
-                score += 5 * 100;
-                score += (no5s - 3) * 50;
+                score += diceRollMultiplier* TRIPLE_SCORE_MULTIPLER;
+                score += (noDiceRolls - TRIPLE_APPEARANCE) * diceRollSingleScoreMultiplier;
             }
 
             return score;
