@@ -33,6 +33,7 @@ namespace Attempt1.Test
         [InlineData(new int[] { 1, 1, 1, 5, 1 }, 1150)]
         [InlineData(new int[] { 2, 3, 4, 6, 2 }, 0)]
         [InlineData(new int[] { 3, 4, 5, 3, 3 }, 350)]
+        [InlineData(new int[] { 5, 5, 5, 5, 3 }, 550)]
         public void ShouldReturnSumOfCombi(
             int[] dices, int expectedScore)
         {

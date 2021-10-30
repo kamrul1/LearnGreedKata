@@ -19,12 +19,23 @@ namespace Attempt1.Test
             score = ScoreDices1s(dices, score);
             score = ScoreDices5s(dices, score);
 
-            score = ScoreTripleDiceRolls(dices, score,2);
-            score = ScoreTripleDiceRolls(dices, score,3);
-            score = ScoreTripleDiceRolls(dices, score,6);
+            score = ScoreTripleDiceRolls(dices, score, 2);
+            score = ScoreTripleDiceRolls(dices, score, 3);
+            score = ScoreTripleDiceRolls(dices, score, 6);
 
             return score;
 
+        }
+        private static int ScoreTripleDiceRolls(int[] dices, int score, int diceRoll)
+        {
+            var noDiceRolls = CountNoTime(dices, diceRoll);
+            if (noDiceRolls >= TRIPLE_APPEARANCE)
+            {
+                score += diceRoll * TRIPLE_SCORE_MULTIPLER;
+
+            }
+
+            return score;
         }
 
         private static int ScoreDices1s(int[] dices, int score)
@@ -44,39 +55,8 @@ namespace Attempt1.Test
             return score;
         }
 
-        private static int ScoreTripleDiceRolls(int [] dices, int score, int diceRoll)
-        {
-            var noDiceRolls = CountNoTime(dices, diceRoll);
-            if(noDiceRolls>= TRIPLE_APPEARANCE)
-            {
-                score += diceRoll * TRIPLE_SCORE_MULTIPLER;
 
-            }
 
-            return score;
-        }
-
-        private static int ScoreDices2s(int[] dices, int score)
-        {
-            var no2s = CountNoTime(dices, 2);
-            if (no2s >= TRIPLE_APPEARANCE)
-            {
-                score += 2*100;
-            }
-
-            return score;
-        }
-
-        private static int ScoreDices3s(int[] dices, int score)
-        {
-            var no3s = CountNoTime(dices, 3);
-            if (no3s >= TRIPLE_APPEARANCE)
-            {
-                score += 3*100;
-            }
-
-            return score;
-        }
 
         private static int ScoreDices5s(int[] dices, int score)
         {
@@ -84,28 +64,18 @@ namespace Attempt1.Test
             if (no5s == ONE_APPEARANCE)
             {
                 score += 50;
-                
+
             }
-            if (no5s == TRIPLE_APPEARANCE)
+            if (no5s >= TRIPLE_APPEARANCE)
             {
-                score += 5*100;
+                score += 5 * 100;
                 score += (no5s - 3) * 50;
             }
 
             return score;
         }
 
-        private static int ScoreDice6s(int[] dices, int score)
-        {
-            var no6s = CountNoTime(dices, 6);
 
-            if (no6s >= TRIPLE_APPEARANCE)
-            {
-                score += 6*100;
-            }
-
-            return score;
-        }
 
         private static int CountNoTime(int[] dices, int findNo)
         {
