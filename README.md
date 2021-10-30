@@ -28,4 +28,12 @@ same game.
  - Count other case examples given
 
 
+## Attempt1 mistakes
+
+Correction neeed:
+- Just seen that 1-6 dices talked about in the extra credit.  I've started with that.  Need to remove 1 dice and retest again.
+
+
+
+
 

@@ -6,21 +6,21 @@ namespace Attempt1.Test
     public class GreedTest
     {
         [Theory]
-        [InlineData(new[] { 1, 1, 1, 1, 1, 1 }, 1300)]
-        [InlineData(new[] { 1, 1, 0, 3, 1, 6 }, 1000)]
-        [InlineData(new[] { 0, 1, 0, 3, 9, 6 }, 100)]
+        [InlineData(new[] { 1, 1, 1, 1, 1 }, 1200)]
+        [InlineData(new[] { 1, 1, 0, 3, 1 }, 1000)]
+        [InlineData(new[] { 0, 1, 0, 3, 9 }, 100)]
 
-        [InlineData(new[] { 0, 2, 0, 2, 2, 6 }, 200)]
-        [InlineData(new[] { 2, 2, 2, 2, 2, 2 }, 200)]
+        [InlineData(new[] { 0, 2, 0, 2, 2}, 200)]
+        [InlineData(new[] { 2, 2, 2, 2, 2}, 200)]
 
-        [InlineData(new[] { 0, 3, 0, 3, 3, 6 }, 300)]
-        [InlineData(new[] { 3, 3, 3, 3, 3, 3 }, 300)]
+        [InlineData(new[] { 0, 3, 0, 3, 3}, 300)]
+        [InlineData(new[] { 3, 3, 3, 3, 3}, 300)]
 
-        [InlineData(new[] { 0, 0, 5, 3, 9, 6 }, 50)]
-        [InlineData(new[] { 0, 0, 5, 5, 5, 6 }, 500)]
+        [InlineData(new[] { 0, 0, 5, 3, 9}, 50)]
+        [InlineData(new[] { 0, 0, 5, 5, 5}, 500)]
 
-        [InlineData(new[] { 6, 6, 6, 2, 2, 0 }, 600)]
-        [InlineData(new[] { 6, 6, 6, 6, 6, 6 }, 600)]
+        [InlineData(new[] { 6, 6, 6, 2, 2 }, 600)]
+        [InlineData(new[] { 6, 6, 6, 6, 6}, 600)]
         public void ShouldReturnSingleOrTripleScore(
             int[] dices, int expectedScore)
         {
@@ -43,7 +43,27 @@ namespace Attempt1.Test
 
         }
 
-        
+        [Theory]
+        [InlineData(new int[] {1}, 100)]
+        [InlineData(new int[] {1,2,3,4,5,6}, 150)]
+        public void ShouldReturnScoreFor1to6DiceThrown(
+            int[] dices, int expectedScore)
+        {
+            var result = Greed.GetScore(dices);
+
+            Assert.Equal(expectedScore, result);
+
+        }
+
+        [Fact]
+        public void ShouldReturnScoreFourOfAKind()
+        {
+            int[] dices = new int[] { 2, 2, 2, 2 };
+            var result = Greed.GetScore(dices);
+
+            Assert.Equal(400, result);
+        }
+
 
 
     }
