@@ -20,5 +20,12 @@ same game.
 |Three 5s	        |500    |
 |Three 6s	        |600    |
 
-            
+   
+## Approach tried first         
+- Counts 1 - 6 six using above rules,
+  - code refactoring after above gets messy.
+  - made mistake in thinkly initally six 1s are allowed to score 1000, but not the case
+ - Count other case examples given
+
+
 
